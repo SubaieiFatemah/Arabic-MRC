@@ -117,7 +117,7 @@ test_dataset = dataframe2dict(df_test)
 # In[19]:
 
 
-with open("Data/asquadv2-train.json", "w") as outfile:
+with open("asquadv2-train.json", "w") as outfile:
     json.dump(train_dataset, outfile)
 with open("Data/asquadv2-val.json", "w") as outfile:
     json.dump(val_dataset, outfile)
