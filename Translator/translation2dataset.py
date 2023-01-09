@@ -13,7 +13,7 @@ from sklearn.model_selection import train_test_split
 # In[2]:
 
 
-from Preprocess.arabertpreprocess import ArabertPreprocessor
+from preprocess.arabertpreprocess import ArabertPreprocessor
 
 
 # In[3]:
