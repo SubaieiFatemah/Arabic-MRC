@@ -19,16 +19,16 @@ from arabert.preprocess import ArabertPreprocessor
 
 # In[3]:
 
-
+'''
 url = 'https://drive.google.com/uc?id=1-3aZrNqg_TwX2WbPP7-BmDR1HwCMsdiL'
 output = 'Asquadv2-train.csv'
 gdown.download(url, output, quiet=False)
-
+'''
 
 # In[3]:
 
 
-df = pd.read_csv('Asquadv2-train.csv')
+df = pd.read_csv('cgsqa.csv')
 
 
 # In[4]:
