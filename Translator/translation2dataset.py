@@ -7,14 +7,15 @@
 import gdown
 import pandas as pd
 import json
+import Preprocess
 from sklearn.model_selection import train_test_split
 
 
 # In[2]:
 
-#from Preprocess.arabertpreprocess import ArabertPreprocessor
+from Preprocess.arabertpreprocess import ArabertPreprocessor
 
-from arabert.preprocess import ArabertPreprocessor
+#from arabert.preprocess import ArabertPreprocessor
 
 
 # In[3]:
