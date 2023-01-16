@@ -28,7 +28,7 @@ gdown.download(url, output, quiet=False)
 # In[3]:
 
 
-df = pd.read_csv('cgsqa.csv', encoding='latin-1')
+df = pd.read_csv('cgsqa2.csv')
 
 
 # In[4]:
