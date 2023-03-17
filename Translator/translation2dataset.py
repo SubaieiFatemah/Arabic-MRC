@@ -90,7 +90,7 @@ def dataframe2dict(df):
 # In[11]:
 
 
-df_train, df_test, y_train, y_test = train_test_split(cleaned_span_df, cleaned_span_df['is_impossible'],test_size = 0.1,stratify = cleaned_span_df['is_impossible'])
+df_train, df_test, y_train, y_test = train_test_split(cleaned_span_df, cleaned_span_df['is_impossible'],test_size = 0.2,stratify = cleaned_span_df['is_impossible'])
 
 
 # In[12]:
