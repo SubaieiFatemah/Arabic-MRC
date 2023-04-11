@@ -28,7 +28,7 @@ gdown.download(url, output, quiet=False)
 # In[3]:
 
 
-df = pd.read_csv('Asquadv2-train.csv')
+df = pd.read_csv('output.csv')
 
 
 # In[4]:
