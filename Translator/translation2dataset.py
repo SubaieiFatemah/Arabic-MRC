@@ -75,7 +75,7 @@ def dataframe2dict(df):
             key2_processed = arabert_prep.preprocess(key2)
             triplet_dict = {'context':key2_processed, 'qas':list()}
             for idx, row in new_df_2.iterrows():
-                qa_dict = {'question':arabert_prep.preprocess(row['question']), 'id':str(cnt), 'is_impossible':row['is_impossible']}
+                qa_dict = {'question':arabert_prep.preprocess(row['question']), 'pq_id':str(cnt), 'is_impossible':row['is_impossible']}
                 if row['is_impossible'] ==False:
                     qa_dict['answers'] = [{'text':arabert_prep.preprocess(row['answer']), 'answer_start':row['answer_start']}]
                 else:
