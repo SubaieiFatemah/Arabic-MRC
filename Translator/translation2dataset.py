@@ -77,10 +77,10 @@ def dataframe2dict(df):
             for idx, row in new_df_2.iterrows():
                 qa_dict = {'question':arabert_prep.preprocess(row['question']), 'ID':str(cnt), 'is_impossible':row['is_impossible']}
                 if row['is_impossible'] ==False:
-                    qa_dict['answers'] = [{'text':arabert_prep.preprocess(row['answer']), 'answer_start':row['answer_start']}]
+                    qa_dict['answerss'] = [{'text':arabert_prep.preprocess(row['answers']), 'answer_start':row['answer_start']}]
                 else:
-                    qa_dict['plausible_answers'] =[{'text':arabert_prep.preprocess(row['answer']), 'answer_start':0}]
-                    qa_dict['answers']=list()
+                    qa_dict['plausible_answers'] =[{'text':arabert_prep.preprocess(row['answers']), 'answer_start':0}]
+                    qa_dict['answerss']=list()
                 triplet_dict['qas'].append(qa_dict)
                 cnt = cnt+1
             generated_data['data'][-1]['paragraphs'].append(triplet_dict)
