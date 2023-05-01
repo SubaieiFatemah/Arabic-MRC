@@ -28,7 +28,7 @@ gdown.download(url, output, quiet=False)
 # In[3]:
 
 
-df = pd.read_csv('result1.csv')
+df = pd.read_csv('cgsqa5x.csv')
 
 
 # In[4]:
