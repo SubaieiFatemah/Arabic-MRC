@@ -75,12 +75,12 @@ def dataframe2dict(df):
             key2_processed = arabert_prep.preprocess(key2)
             triplet_dict = {'context':key2_processed, 'qas':list()}
             for idx, row in new_df_2.iterrows():
-                qa_dict = {'question':arabert_prep.preprocess(row['question']), 'ID':str(cnt), 'is_impossible':row['is_impossible']}
+                qa_dict = {'question':arabert_prep.preprocess(row['question']), 'id':str(cnt), 'is_impossible':row['is_impossible']}
                 if row['is_impossible'] ==False:
-                    qa_dict['answerss'] = [{'text':arabert_prep.preprocess(row['answers']), 'answer_start':row['answer_start']}]
+                    qa_dict['answers'] = [{'text':arabert_prep.preprocess(row['answer']), 'answer_start':row['answer_start']}]
                 else:
-                    qa_dict['plausible_answers'] =[{'text':arabert_prep.preprocess(row['answers']), 'answer_start':0}]
-                    qa_dict['answerss']=list()
+                    qa_dict['plausible_answers'] =[{'text':arabert_prep.preprocess(row['answer']), 'answer_start':0}]
+                    qa_dict['answers']=list()
                 triplet_dict['qas'].append(qa_dict)
                 cnt = cnt+1
             generated_data['data'][-1]['paragraphs'].append(triplet_dict)
@@ -90,14 +90,14 @@ def dataframe2dict(df):
 # In[11]:
 
 
-df_train, df_test, y_train, y_test = train_test_split(cleaned_span_df, cleaned_span_df['is_impossible'],test_size = 0.2,stratify = cleaned_span_df['is_impossible'])
+df_train, df_test, y_train, y_test = train_test_split(cleaned_span_df, cleaned_span_df['is_impossible'],test_size = 0.1,stratify = cleaned_span_df['is_impossible'])
 
 
 # In[12]:
 
 
 # 0.111111 x 0.9 = 0.1
-df_train, df_val, y_train, y_val = train_test_split(df_train, df_train['is_impossible'],test_size = 0.25,stratify = df_train['is_impossible'])
+df_train, df_val, y_train, y_val = train_test_split(df_train, df_train['is_impossible'],test_size = 0.111111,stratify = df_train['is_impossible'])
 
 
 # In[13]:
@@ -117,10 +117,9 @@ test_dataset = dataframe2dict(df_test)
 # In[19]:
 
 
-with open("asquadv2-train.json", "w") as outfile:
+with open("Data/asquadv2-train.json", "w") as outfile:
     json.dump(train_dataset, outfile)
-with open("asquadv2-val.json", "w") as outfile:
+with open("Data/asquadv2-val.json", "w") as outfile:
     json.dump(val_dataset, outfile)
-with open("asquadv2-test.json", "w") as outfile:
+with open("Data/asquadv2-test.json", "w") as outfile:
     json.dump(test_dataset, outfile)
-
