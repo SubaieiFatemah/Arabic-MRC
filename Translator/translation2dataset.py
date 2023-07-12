@@ -8,7 +8,7 @@ import gdown
 import pandas as pd
 import json
 from sklearn.model_selection import train_test_split
-
+import sys
 
 # In[2]:
 
@@ -27,8 +27,8 @@ gdown.download(url, output, quiet=False)
 
 # In[3]:
 
-
-df = pd.read_csv('cgsqa5x.csv')
+file_name = sys.argv[1]
+df = pd.read_csv(file_name)
 
 
 # In[4]:
