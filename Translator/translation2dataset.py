@@ -167,7 +167,7 @@ def dataframe2dict(df):
     return generated_data
 
 
-df_train, df_test, y_train, y_test = train_test_split(df, df['is_impossible'], test_size=0.2)
+df_train, df_test, y_train, y_test = train_test_split(df, df['is_impossible'], test_size=0.25)
 df_val, df_test, y_val, y_test = train_test_split(df_test, df_test['is_impossible'], test_size=0.5)
 
 
