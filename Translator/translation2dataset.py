@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+'''#!/usr/bin/env python
 # coding: utf-8
 
 # In[1]:
@@ -122,4 +122,55 @@ with open("/content/asquadv2-train.json", "w") as outfile:
 with open("/content/asquadv2-val.json", "w") as outfile:
     json.dump(val_dataset, outfile)
 with open("/content/asquadv2-test.json", "w") as outfile:
+    json.dump(test_dataset, outfile)
+'''
+import pandas as pd
+import json
+from sklearn.model_selection import train_test_split
+import sys
+
+file_name = sys.argv[1]
+df = pd.read_csv(file_name)
+
+def dataframe2dict(df):
+    model_name = "araelectra-base-discriminator"
+    arabert_prep = ArabertPreprocessor(model_name=model_name)
+    generated_data = dict()
+    generated_data['version'] = 2.0
+    generated_data['data'] = []
+    cnt = 0
+    for _, row in df.iterrows():
+        context = arabert_prep.preprocess(row['context'])
+        question = arabert_prep.preprocess(row['question'])
+        answer = arabert_prep.preprocess(row['answer'])
+        qa_dict = {
+            'question': question,
+            'id': str(cnt),
+            'is_impossible': row['is_impossible']
+        }
+        if not row['is_impossible']:
+            qa_dict['answers'] = [{'text': answer, 'answer_start': row['answer_start']}]
+        else:
+            qa_dict['answers'] = []
+        paragraph = {
+            'context': context,
+            'qas': [qa_dict]
+        }
+        generated_data['data'].append({'title': '', 'paragraphs': [paragraph]})
+        cnt += 1
+    return generated_data
+
+
+df_train, df_val, y_train, y_val = train_test_split(df, df['is_impossible'], test_size=0.25, stratify=df['is_impossible'])
+df_test = df_val  # Use validation data as test data for simplicity
+
+train_dataset = dataframe2dict(df_train)
+val_dataset = dataframe2dict(df_val)
+test_dataset = dataframe2dict(df_test)
+
+with open("asquadv2-train.json", "w") as outfile:
+    json.dump(train_dataset, outfile)
+with open("asquadv2-val.json", "w") as outfile:
+    json.dump(val_dataset, outfile)
+with open("asquadv2-test.json", "w") as outfile:
     json.dump(test_dataset, outfile)
