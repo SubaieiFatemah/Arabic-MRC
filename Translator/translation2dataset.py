@@ -130,6 +130,7 @@ import pandas as pd
 import json
 from sklearn.model_selection import train_test_split
 import sys
+from arabert.preprocess import ArabertPreprocessor
 
 file_name = sys.argv[1]
 df = pd.read_csv(file_name)
