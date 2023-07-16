@@ -167,8 +167,9 @@ def dataframe2dict(df):
     return generated_data
 
 
-df_train, df_val, y_train, y_val = train_test_split(df, df['is_impossible'], test_size=0.25, stratify=df['is_impossible'])
-df_test = df_val  # Use validation data as test data for simplicity
+df_train, df_test, y_train, y_test = train_test_split(df, df['is_impossible'], test_size=0.3)
+df_val, df_test, y_val, y_test = train_test_split(df_test, df_test['is_impossible'], test_size=0.5)
+
 
 print(df_train.shape, df_val.shape, df_test.shape)
 
