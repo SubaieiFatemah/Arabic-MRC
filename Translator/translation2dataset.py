@@ -135,6 +135,9 @@ from arabert.preprocess import ArabertPreprocessor
 file_name = sys.argv[1]
 df = pd.read_csv(file_name)
 
+print(df.shape)
+print(df.columns)
+
 def dataframe2dict(df):
     model_name = "araelectra-base-discriminator"
     arabert_prep = ArabertPreprocessor(model_name=model_name)
@@ -166,6 +169,8 @@ def dataframe2dict(df):
 
 df_train, df_val, y_train, y_val = train_test_split(df, df['is_impossible'], test_size=0.25, stratify=df['is_impossible'])
 df_test = df_val  # Use validation data as test data for simplicity
+
+print(df_train.shape, df_val.shape, df_test.shape)
 
 train_dataset = dataframe2dict(df_train)
 val_dataset = dataframe2dict(df_val)
