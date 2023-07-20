@@ -167,7 +167,7 @@ def dataframe2dict(df):
     return generated_data
 
 random_state=random_state = 42
-df_train, df_test, y_train, y_test = train_test_split(df, df['is_impossible'], test_size=0.25, random_state=random_state)
+df_train, df_test, y_train, y_test = train_test_split(df, df['is_impossible'], test_size=0.3, random_state=random_state)
 df_val, df_test, y_val, y_test = train_test_split(df_test, df_test['is_impossible'], test_size=0.5, random_state=random_state)
 
 
@@ -177,9 +177,9 @@ train_dataset = dataframe2dict(df_train)
 val_dataset = dataframe2dict(df_val)
 test_dataset = dataframe2dict(df_test)
 
-with open("asquadv2-train.json", "w") as outfile:
+with open("cgsqa-train.json", "w") as outfile:
     json.dump(train_dataset, outfile)
-with open("asquadv2-val.json", "w") as outfile:
+with open("cgsqa-val.json", "w") as outfile:
     json.dump(val_dataset, outfile)
-with open("asquadv2-test.json", "w") as outfile:
+with open("cgsqa-test.json", "w") as outfile:
     json.dump(test_dataset, outfile)
